@@ -1,0 +1,4 @@
+REPLICAS: 1
+GREETING: "Default greeting"
+NODE_PORT: 32760
+IMAGE: "gcr.io/<gcp-project-id>/<uteid>-assignment4:latest"

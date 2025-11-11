@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if (( $# < 4 )); then
+  echo "kubectl appmetrics show <kind> <instance> <namespace-in-which-the-app-is-created> <kubeconfig>"
+  exit 0
+fi
+
+kind=$1
+instance=$2
+namespace=$3
+kubeconfig=$4
+
+
+URL=`kubectl appurl $kind $instance $namespace -k $kubeconfig`
+URL=$(echo $URL | sed "s/[][]//g" | sed "s/'//g")
+echo $URL 
+
+echo "---"
+curl $URL/greetings
+echo "---"
+curl $URL/listcontents
+echo "---"
+curl $URL/getk8sobjects
+echo "---"
+
+curl $URL/metrics
